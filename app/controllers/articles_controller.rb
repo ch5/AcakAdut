@@ -11,6 +11,13 @@ class ArticlesController < ApplicationController
     end
   end
 
+  # GET /articles/by_categories/:category
+  def by_categories
+    @articles = Category.find_by_category(params[:category]).articles
+    render :index
+  end
+
+
   # GET /articles/1
   # GET /articles/1.json
   def show
@@ -29,6 +36,7 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = Article.new(article_params)
+    @article.category_id = params[:category_id]
 
     respond_to do |format|
       if @article.save
