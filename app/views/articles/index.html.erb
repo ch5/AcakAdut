@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Articles</h1>
+
+<div id="tag_cloud">
+  <h1>Tag link : </h1>
+  <% tag_cloud Article.tag_counts, %w[s m l] do |tag, css_class| %>
+    <%= link_to(tag.name, tag_path(tag.name), class: css_class) %>
+  <% end %>
+</div>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th>Image</th>
+      <th>Category</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td><%= article.title %></td>
+        <td><%= truncate(article.body, length: 140, escape: false) %></td>
+        <td><%= image_tag article.image, height: 80, width: 80 %></td>
+        <td><%= article.category.category %></td>
+        <td><%= link_to 'Show', article %></td>
+        <td><%= link_to 'Edit', edit_article_path(article) %></td>
+        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Article', new_article_path %>
