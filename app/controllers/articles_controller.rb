@@ -6,16 +6,18 @@ class ArticlesController < ApplicationController
   def index
     if params[:tag]
       @articles = Article.tagged_with(params[:tag])
+    elsif params[:category]
+      @articles = Category.find_by_category(params[:category]).articles
     else
       @articles = Article.all
     end
   end
 
   # GET /articles/by_categories/:category
-  def by_categories
-    @articles = Category.find_by_category(params[:category]).articles
-    render :index
-  end
+  # def by_categories
+
+  #   render :index
+  # end
 
 
   # GET /articles/1
