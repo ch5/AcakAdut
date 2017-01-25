@@ -9,6 +9,12 @@
   <% end %>
 </div>
 
+<h1>Category</h1>
+<p>
+  <% @categories.each do |category| %>
+   <%= link_to(category.category, category_path(category.category)) %>
+  <% end %>
+</p>
 
 <table>
   <thead>

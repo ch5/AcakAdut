@@ -11,6 +11,8 @@ class ArticlesController < ApplicationController
     else
       @articles = Article.all
     end
+
+    @categories = Category.all
   end
 
   # GET /articles/by_categories/:category
