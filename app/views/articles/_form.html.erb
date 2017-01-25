@@ -30,7 +30,7 @@
         <%= f.file_field :image %>
       </div>
       <div class="field">
-       <%= f.select(:category_id, Category.all.collect {|s| [s.category, s.id]}) %>
+       <%= f.select(:category_id, Category.all.map {|s| [s.category, s.id]}) %>
       </div>
 
       <div class="actions">
